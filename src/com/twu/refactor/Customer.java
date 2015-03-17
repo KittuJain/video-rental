@@ -23,48 +23,17 @@ public class Customer {
 	public String getStatement() {
 		double totalAmount = 0;
 		int frequentRenterPoints = 0;
-		Iterator<Rental> rentals = rentalList.iterator();
 		String statement = "Rental Record for " + getName() + "\n";
-		while (rentals.hasNext()) {
+        for (Rental rental : rentalList){
 			double rentalAmount = 0;
-			Rental rental = rentals.next();
-            rentalAmount += getAmountFor(rental);
-            frequentRenterPoints += getFrequentRentalPoints(rental);
+            rentalAmount += rental.getAmountFor();
+            frequentRenterPoints += rental.getFrequentRentalPoints();
             statement += getRentalSubTotal(rentalAmount, rental);
             totalAmount += rentalAmount;
 		}
         statement += getSummary(totalAmount, frequentRenterPoints);
 		return statement;
 	}
-
-    private double getAmountFor(Rental rental) {
-        double rentalAmount = 0.0;
-        switch (rental.getMovie().getPriceCode()) {
-            case Movie.REGULAR:
-                rentalAmount += 2;
-                if (rental.getDaysRented() > 2)
-                    rentalAmount += (rental.getDaysRented() - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                rentalAmount += rental.getDaysRented() * 3;
-                break;
-            case Movie.CHILDRENS:
-                rentalAmount += 1.5;
-                if (rental.getDaysRented() > 3)
-                    rentalAmount += (rental.getDaysRented() - 3) * 1.5;
-                break;
-        }
-        return rentalAmount;
-    }
-
-    private int getFrequentRentalPoints(Rental rental) {
-        int frequentRenterPoints = 0;
-        frequentRenterPoints++;
-        if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE)
-                && rental.getDaysRented() > 1)
-            frequentRenterPoints++;
-        return frequentRenterPoints;
-    }
 
     private String getRentalSubTotal(double rentalAmount, Rental rental) {
         String statement;
@@ -83,13 +52,11 @@ public class Customer {
     public String getHtmlStatement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        Iterator<Rental> rentals = rentalList.iterator();
         String htmlStatement = "<H1>Rentals for<EM>"+ getName() +"</EM></H1><P>";
-        while (rentals.hasNext()) {
+        for (Rental rental : rentalList) {
             double rentalAmount = 0;
-            Rental rental = rentals.next();
-            rentalAmount += getAmountFor(rental);
-            frequentRenterPoints += getFrequentRentalPoints(rental);
+            rentalAmount += rental.getAmountFor();
+            frequentRenterPoints += rental.getFrequentRentalPoints();
             htmlStatement += getHTMLRentalSubTotal(rentalAmount, rental);
             totalAmount += rentalAmount;
         }
