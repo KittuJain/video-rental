@@ -4,7 +4,7 @@ public class Rental {
 
     private Movie movie;
 
-    public int daysRented;
+    private int daysRented;
 
     public Rental(Movie movie, int daysRented) {
         this.movie = movie;
@@ -38,7 +38,7 @@ public class Rental {
             case Movie.NEW_RELEASE:
                 rentalAmount += daysRented * 3;
                 break;
-            case Movie.CHILDRENS:
+            case Movie.CHILDREN:
                 rentalAmount += 1.5;
                 if (daysRented > 3)
                     rentalAmount += (daysRented - 3) * 1.5;

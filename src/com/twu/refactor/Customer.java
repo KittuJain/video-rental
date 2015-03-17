@@ -1,7 +1,6 @@
 package com.twu.refactor;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Customer {
 
@@ -49,6 +48,7 @@ public class Customer {
                 + " frequent renter points";
         return statement;
     }
+
     public String getHtmlStatement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
@@ -63,12 +63,14 @@ public class Customer {
         htmlStatement += getHTMLSummary(totalAmount, frequentRenterPoints);
         return htmlStatement;
     }
+
     private String getHTMLRentalSubTotal(double rentalAmount, Rental rental) {
         String statement;
         statement = rental.getMovie().getTitle() + ": "
                 + String.valueOf(rentalAmount) + "<BR>";
         return statement;
     }
+
     private String getHTMLSummary(double totalAmount, int frequentRenterPoints) {
         String statement;
         statement = "<P>You owe<EM>" + String.valueOf(totalAmount) + "</EM>";

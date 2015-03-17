@@ -17,7 +17,7 @@ public class CustomerTest extends TestCase {
 	private Movie ran = new Movie("Ran", Movie.REGULAR);
 	private Movie la = new Movie("LA Confidential", Movie.NEW_RELEASE);
 	private Movie trek = new Movie("Star Trek 13.2", Movie.NEW_RELEASE);
-	private Movie wallace = new Movie("Wallace and Gromit", Movie.CHILDRENS);
+	private Movie wallace = new Movie("Wallace and Gromit", Movie.CHILDREN );
 
     public void setUp (){
        dinsdale.addRental(new Rental (python, 3));
@@ -36,6 +36,8 @@ public class CustomerTest extends TestCase {
         equalsFile("1st Output", "output1", dinsdale.getStatement());
     }
 
+    // new rental must be introduced instead of changing the price
+    // priceCode should not be reset
     public void testChange() throws Exception {
     	la.setPriceCode(Movie.REGULAR);
         equalsFile("1st Output", "outputChange", dinsdale.getStatement());
