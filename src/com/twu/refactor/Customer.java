@@ -20,19 +20,32 @@ public class Customer {
 	}
 
 	public String getStatement() {
-		double totalAmount = 0;
-		int frequentRenterPoints = 0;
-		String statement = "Rental Record for " + getName() + "\n";
+		String statement = getHeader();
         for (Rental rental : rentalList){
-			double rentalAmount = 0;
-            rentalAmount += rental.getAmountFor();
-            frequentRenterPoints += rental.getFrequentRentalPoints();
-            statement += rental.getRentalSubTotal(rentalAmount);
-            totalAmount += rentalAmount;
-		}
-        statement += getSummary(totalAmount, frequentRenterPoints);
+            statement += getRentalSubTotal(rental);
+        }
+        statement += getSummary(getTotalAmount(), getTotalFrequentRentalPoints());
 		return statement;
 	}
+
+    private String getHeader() {
+        return "Rental Record for " + getName() + "\n";
+    }
+
+    private double getTotalAmount() {
+        double totalAmount = 0;
+        for (Rental rental : rentalList){
+            totalAmount += rental.getAmountFor();
+        }
+        return totalAmount;
+    }
+
+    private int getTotalFrequentRentalPoints() {
+        int frequentRenterPoints = 0;
+        for (Rental rental : rentalList)
+            frequentRenterPoints += rental.getFrequentRentalPoints();
+        return frequentRenterPoints;
+    }
 
     private String getSummary(double totalAmount, int frequentRenterPoints) {
         String statement;
@@ -69,6 +82,13 @@ public class Customer {
         statement = "<P>You owe<EM>" + String.valueOf(totalAmount) + "</EM>";
         statement += "<P>On this rental you earned<EM>" + String.valueOf(frequentRenterPoints)
                 + "</EM>frequent renter points<P>";
+        return statement;
+    }
+
+    public String getRentalSubTotal(Rental rental) {
+        String statement;
+        statement = "\t" + rental.movie.getTitle() + "\t"
+                + String.valueOf(rental.getAmountFor()) + "\n";
         return statement;
     }
 }

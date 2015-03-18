@@ -11,8 +11,7 @@ public class Rental {
     }
 
     public int getFrequentRentalPoints() {
-        int frequentRenterPoints = 0;
-        frequentRenterPoints++;
+        int frequentRenterPoints = 1;
         if (movie.isNewRelease() && daysRented > 1)
             frequentRenterPoints++;
         return frequentRenterPoints;
@@ -22,10 +21,4 @@ public class Rental {
         return movie.getPriceCode().getCostFor(daysRented);
     }
 
-    public String getRentalSubTotal(double rentalAmount) {
-        String statement;
-        statement = "\t" + movie.getTitle() + "\t"
-                + String.valueOf(rentalAmount) + "\n";
-        return statement;
-    }
 }
