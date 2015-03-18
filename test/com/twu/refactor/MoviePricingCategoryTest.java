@@ -24,6 +24,6 @@ public class MoviePricingCategoryTest extends TestCase {
     @Test
     public void testRegularCategoryGivesCorrectCostForMoreThan3DaysRented() {
         double actualCost = MoviePricingCategory.REGULAR.getCostFor(4);
-        assertEquals(5.5,actualCost,0.0);
+        assertEquals(5,actualCost,0.0);
     }
 }

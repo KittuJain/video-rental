@@ -19,27 +19,7 @@ public class Rental {
     }
 
     public double getAmountFor() {
-        double rentalAmount = 0.0;
-        switch (movie.getPriceCode()) {
-            case REGULAR:
-                rentalAmount += 2;
-                rentalAmount = calculateRentalAmount(rentalAmount,2);
-                break;
-            case NEW_RELEASE:
-                rentalAmount += daysRented * 3;
-                break;
-            case KIDS:
-                rentalAmount += 1.5;
-                rentalAmount = calculateRentalAmount(rentalAmount,3);
-                break;
-        }
-        return rentalAmount;
-    }
-
-    private double calculateRentalAmount(double rentalAmount, double numOfDaysRentedFor) {
-        if (daysRented > numOfDaysRentedFor)
-            rentalAmount += (daysRented - numOfDaysRentedFor) * 1.5;
-        return rentalAmount;
+        return movie.getPriceCode().getCostFor(daysRented);
     }
 
     public String getRentalSubTotal(double rentalAmount) {
