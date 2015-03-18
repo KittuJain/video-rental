@@ -27,19 +27,12 @@ public class Customer {
 			double rentalAmount = 0;
             rentalAmount += rental.getAmountFor();
             frequentRenterPoints += rental.getFrequentRentalPoints();
-            statement += getRentalSubTotal(rentalAmount, rental);
+            statement += rental.getRentalSubTotal(rentalAmount);
             totalAmount += rentalAmount;
 		}
         statement += getSummary(totalAmount, frequentRenterPoints);
 		return statement;
 	}
-
-    private String getRentalSubTotal(double rentalAmount, Rental rental) {
-        String statement;
-        statement = "\t" + rental.getMovie().getTitle() + "\t"
-                + String.valueOf(rentalAmount) + "\n";
-        return statement;
-    }
 
     private String getSummary(double totalAmount, int frequentRenterPoints) {
         String statement;
@@ -66,7 +59,7 @@ public class Customer {
 
     private String getHTMLRentalSubTotal(double rentalAmount, Rental rental) {
         String statement;
-        statement = rental.getMovie().getTitle() + ": "
+        statement = rental.movie.getTitle() + ": "
                 + String.valueOf(rentalAmount) + "<BR>";
         return statement;
     }
