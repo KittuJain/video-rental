@@ -1,6 +1,7 @@
 package com.twu.refactor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
 
@@ -19,20 +20,7 @@ public class Customer {
 		return name;
 	}
 
-	public String getStatement() {
-		String statement = getHeader();
-        for (Rental rental : rentalList){
-            statement += getRentalSubTotal(rental);
-        }
-        statement += getSummary(getTotalAmount(), getTotalFrequentRentalPoints());
-		return statement;
-	}
-
-    private String getHeader() {
-        return "Rental Record for " + getName() + "\n";
-    }
-
-    private double getTotalAmount() {
+    public double getTotalAmount() {
         double totalAmount = 0;
         for (Rental rental : rentalList){
             totalAmount += rental.getAmountFor();
@@ -40,19 +28,11 @@ public class Customer {
         return totalAmount;
     }
 
-    private int getTotalFrequentRentalPoints() {
+    public int getTotalFrequentRentalPoints() {
         int frequentRenterPoints = 0;
         for (Rental rental : rentalList)
             frequentRenterPoints += rental.getFrequentRentalPoints();
         return frequentRenterPoints;
-    }
-
-    private String getSummary(double totalAmount, int frequentRenterPoints) {
-        String statement;
-        statement = "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        statement += "You earned " + String.valueOf(frequentRenterPoints)
-                + " frequent renter points";
-        return statement;
     }
 
     public String getHtmlStatement() {
@@ -90,5 +70,9 @@ public class Customer {
         statement = "\t" + rental.movie.getTitle() + "\t"
                 + String.valueOf(rental.getAmountFor()) + "\n";
         return statement;
+    }
+
+    public List<Rental> getRentalList() {
+        return rentalList;
     }
 }
