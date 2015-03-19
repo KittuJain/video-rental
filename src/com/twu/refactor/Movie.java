@@ -10,11 +10,7 @@ public class Movie {
 		this.priceCode = priceCode;
 	}
 
-	public MoviePricingCategory getPriceCode() {
-		return priceCode;
-	}
-
-	public void setPriceCode(MoviePricingCategory newMoviePricingCode) {
+    public void setPriceCode(MoviePricingCategory newMoviePricingCode) {
     	priceCode = newMoviePricingCode;
 	}
 
@@ -23,7 +19,11 @@ public class Movie {
 	}
 
     public boolean isNewRelease() {
-        return getPriceCode() == MoviePricingCategory.NEW_RELEASE;
+        return priceCode == MoviePricingCategory.NEW_RELEASE;
+    }
+
+    public double getCostForMovie(int daysRented) {
+        return priceCode.getCostFor(daysRented);
     }
 }
 

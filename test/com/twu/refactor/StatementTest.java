@@ -50,22 +50,4 @@ public class StatementTest {
                 "You earned 6 frequent renter points";
         assertTrue(expectedStatement.equals(statement));
     }
-
-    @Test
-    public void getHTMLHeaderGetsTheHTMLHeader() {
-        Statement ts = new Statement();
-        Customer customer = new Customer("Dinsdale Pirhane");
-        String statement = ts.getHTMLHeader(customer);
-        String expectedStatement = "<H1>Rentals for<EM>Dinsdale Pirhane</EM></H1><P>";
-        assertTrue(expectedStatement.equals(statement));
-    }
-
-    @Test
-    public void getHTMLFooterGetsFooterForEachCustomer() {
-        Statement ts = new Statement();
-        String statement = ts.getHTMLFooter(20.4, 3);
-        String expectedStatement = "<P>You owe<EM>20.4</EM>" +
-                "<P>On this rental you earned<EM>3</EM>frequent renter points<P>";
-        assertTrue(expectedStatement.equals(statement));
-    }
 }

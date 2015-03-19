@@ -3,7 +3,7 @@ package com.twu.refactor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Customer {
+public class Customer implements Billable {
 
 	private String name;
 	private ArrayList<Rental> rentalList = new ArrayList<Rental>();
@@ -23,7 +23,7 @@ public class Customer {
     public double getTotalAmount() {
         double totalAmount = 0;
         for (Rental rental : rentalList)
-            totalAmount += rental.getAmountFor();
+            totalAmount += rental.getRentalAmount();
         return totalAmount;
     }
 
@@ -37,14 +37,14 @@ public class Customer {
     public String getHTMLRentalSubTotal(Rental rental) {
         String statement;
         statement = rental.movie.getTitle() + ": "
-                + String.valueOf(rental.getAmountFor()) + "<BR>";
+                + String.valueOf(rental.getRentalAmount()) + "<BR>";
         return statement;
     }
 
     public String getRentalSubTotal(Rental rental) {
         String statement;
         statement = "\t" + rental.movie.getTitle() + "\t"
-                + String.valueOf(rental.getAmountFor()) + "\n";
+                + String.valueOf(rental.getRentalAmount()) + "\n";
         return statement;
     }
 
