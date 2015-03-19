@@ -22,9 +22,8 @@ public class Customer {
 
     public double getTotalAmount() {
         double totalAmount = 0;
-        for (Rental rental : rentalList){
+        for (Rental rental : rentalList)
             totalAmount += rental.getAmountFor();
-        }
         return totalAmount;
     }
 
@@ -38,7 +37,7 @@ public class Customer {
     public String getHtmlStatement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        String htmlStatement = "<H1>Rentals for<EM>"+ getName() +"</EM></H1><P>";
+        String htmlStatement = Statement.getHTMLHeader(this);
         for (Rental rental : rentalList) {
             double rentalAmount = 0;
             rentalAmount += rental.getAmountFor();
@@ -46,7 +45,7 @@ public class Customer {
             htmlStatement += getHTMLRentalSubTotal(rentalAmount, rental);
             totalAmount += rentalAmount;
         }
-        htmlStatement += getHTMLSummary(totalAmount, frequentRenterPoints);
+        htmlStatement += Statement.getHTMLFooter(totalAmount, frequentRenterPoints);
         return htmlStatement;
     }
 
@@ -54,14 +53,6 @@ public class Customer {
         String statement;
         statement = rental.movie.getTitle() + ": "
                 + String.valueOf(rentalAmount) + "<BR>";
-        return statement;
-    }
-
-    private String getHTMLSummary(double totalAmount, int frequentRenterPoints) {
-        String statement;
-        statement = "<P>You owe<EM>" + String.valueOf(totalAmount) + "</EM>";
-        statement += "<P>On this rental you earned<EM>" + String.valueOf(frequentRenterPoints)
-                + "</EM>frequent renter points<P>";
         return statement;
     }
 

@@ -29,18 +29,18 @@ public class CustomerTest extends TestCase {
 
     public void testEmpty() throws Exception {
     	dinsdale = new Customer("Dinsdale Pirhana");
-        equalsFile("1st Output", "outputEmpty", TextStatement.getStatement(dinsdale, dinsdale.getRentalList()));
+        equalsFile("1st Output", "outputEmpty", Statement.getStatement(dinsdale, dinsdale.getRentalList()));
     }
 
     public void testCustomer() throws Exception {
-        equalsFile("1st Output", "output1", TextStatement.getStatement(dinsdale, dinsdale.getRentalList()));
+        equalsFile("1st Output", "output1", Statement.getStatement(dinsdale, dinsdale.getRentalList()));
     }
 
     // new rental must be introduced instead of changing the price
     // priceCode should not be reset
     public void testChange() throws Exception {
     	la.setPriceCode(MoviePricingCategory.REGULAR);
-        equalsFile("1st Output", "outputChange", TextStatement.getStatement(dinsdale, dinsdale.getRentalList()));
+        equalsFile("1st Output", "outputChange", Statement.getStatement(dinsdale, dinsdale.getRentalList()));
     }
 
     public void testHtml() throws Exception {
