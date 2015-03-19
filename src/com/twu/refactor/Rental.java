@@ -20,5 +20,4 @@ public class Rental {
     public double getAmountFor() {
         return movie.getPriceCode().getCostFor(daysRented);
     }
-
 }

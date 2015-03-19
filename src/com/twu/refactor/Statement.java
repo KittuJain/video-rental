@@ -35,4 +35,13 @@ public class Statement {
                 + "</EM>frequent renter points<P>";
         return statement;
     }
+
+    public static String getHtmlStatement(Customer customer, List<Rental> rentalList) {
+        String htmlStatement = getHTMLHeader(customer);
+        for (Rental rental : rentalList) {
+            htmlStatement += customer.getHTMLRentalSubTotal(rental);
+        }
+        htmlStatement += getHTMLFooter(customer.getTotalAmount(), customer.getTotalFrequentRentalPoints());
+        return htmlStatement;
+    }
 }

@@ -34,25 +34,10 @@ public class Customer {
         return frequentRenterPoints;
     }
 
-    public String getHtmlStatement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
-        String htmlStatement = Statement.getHTMLHeader(this);
-        for (Rental rental : rentalList) {
-            double rentalAmount = 0;
-            rentalAmount += rental.getAmountFor();
-            frequentRenterPoints += rental.getFrequentRentalPoints();
-            htmlStatement += getHTMLRentalSubTotal(rentalAmount, rental);
-            totalAmount += rentalAmount;
-        }
-        htmlStatement += Statement.getHTMLFooter(totalAmount, frequentRenterPoints);
-        return htmlStatement;
-    }
-
-    private String getHTMLRentalSubTotal(double rentalAmount, Rental rental) {
+    public String getHTMLRentalSubTotal(Rental rental) {
         String statement;
         statement = rental.movie.getTitle() + ": "
-                + String.valueOf(rentalAmount) + "<BR>";
+                + String.valueOf(rental.getAmountFor()) + "<BR>";
         return statement;
     }
 

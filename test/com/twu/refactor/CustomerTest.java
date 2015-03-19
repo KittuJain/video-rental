@@ -44,7 +44,7 @@ public class CustomerTest extends TestCase {
     }
 
     public void testHtml() throws Exception {
-        equalsFile("1st Output", "outputHtml", dinsdale.getHtmlStatement());
+        equalsFile("1st Output", "outputHtml", Statement.getHtmlStatement(dinsdale, dinsdale.getRentalList()));
     }
 
     protected void equalsFile(String message, String fileName, String actualValue) throws IOException{
