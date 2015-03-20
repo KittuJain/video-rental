@@ -11,11 +11,11 @@ public class Statement {
         return statement;
     }
 
-    public String getHeader(Customer customer) {
+    public String getHeader(Billable customer) {
         return "Rental Record for " + customer.getName() + "\n";
     }
 
-    public String getStatement(Customer customer, List<Rental> rentalList) {
+    public String getStatement(Billable customer, List<Rental> rentalList) {
         String statement = getHeader(customer);
         for (Rental rental : rentalList){
             statement += customer.getRentalSubTotal(rental);

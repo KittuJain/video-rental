@@ -26,6 +26,12 @@ public class Customer implements Billable {
             totalAmount += rental.getRentalAmount();
         return totalAmount;
     }
+    public String getRentalSubTotal(Rental rental) {
+        String statement;
+        statement = "\t" + rental.movie.getTitle() + "\t"
+                + String.valueOf(rental.getRentalAmount()) + "\n";
+        return statement;
+    }
 
     public int getTotalFrequentRentalPoints() {
         int frequentRenterPoints = 0;
@@ -38,13 +44,6 @@ public class Customer implements Billable {
         String statement;
         statement = rental.movie.getTitle() + ": "
                 + String.valueOf(rental.getRentalAmount()) + "<BR>";
-        return statement;
-    }
-
-    public String getRentalSubTotal(Rental rental) {
-        String statement;
-        statement = "\t" + rental.movie.getTitle() + "\t"
-                + String.valueOf(rental.getRentalAmount()) + "\n";
         return statement;
     }
 

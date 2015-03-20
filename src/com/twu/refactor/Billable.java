@@ -9,5 +9,8 @@ public interface Billable {
 
     int getTotalFrequentRentalPoints();
 
+    String getRentalSubTotal(Rental rental);
+
+
     List<Rental> getRentalList();
 }
